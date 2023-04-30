@@ -113,39 +113,39 @@
     </div>
 
     <script>
-            const addButton = document.getElementById("addButton");
-            const removeButton = document.getElementById("removeButton");
-            const sectionContainer = document.getElementById("sectionContainer");
+        const sectionContainer = document.getElementById('sectionContainer');
+const addButton = document.getElementById('addButton');
+const removeButton = document.getElementById('removeButton');
 
-            let sectionCount = 1;
-
-            addButton.addEventListener("click", () => {
-            const sectionName = prompt("Enter section name:");
-            if (sectionName) {
-                const newSection = document.createElement("div");
-                newSection.classList.add("Section" + sectionCount);
-                newSection.innerHTML = `
-                <div class="SectionName" style="padding-top: 1rem;"><br>${sectionName}</div>
-                <div class="MainContent">
-                    <a href="MainContent.html"><img src="home.png" alt="png"></a>
-                </div>
-                <div class="StudentOption"><img src="student.png" alt=""></div>
-                `;
-                sectionContainer.appendChild(newSection);   
-                sectionCount++;
-            }
-            });
-
-            removeButton.addEventListener("click", () => {
-            const sectionNum = prompt("Enter section number:");
-            const section = document.querySelector(`.Section${sectionNum}`);
-            if (section) {
-                section.remove();
-            }
-            });
-        </script>
-        
+addButton.addEventListener('click', () => {
+  const sectionName = prompt('Enter section name:');
+  if (sectionName) {
+    const newSection = document.createElement('div');
+    newSection.className = 'Section1';
+    newSection.innerHTML = `
+      <div class="SectionName"><br>${sectionName}</div>
+      <div class="Attendance">
+          <a href=""><img src="attendance.png" alt="png"></a>
         </div>
-        
-    </body>
-</html>
+        <div class="Recitation">
+            <a href=""><img src="Recitation.png" alt="png"></a>
+        </div>
+        <div class="Analytics">
+          <img src="Analytics.png" alt="png">
+        </div>
+    `;
+    sectionContainer.appendChild(newSection);
+  }
+});
+
+removeButton.addEventListener('click', () => {
+const sectionNameToRemove = prompt('Enter the name of the section to remove:');
+const sections = document.querySelectorAll('.Section1');
+for (let i = sections.length - 1; i >= 0; i--) {
+    if (sections[i].querySelector('.SectionName').textContent.trim() === sectionNameToRemove.trim()) {
+    sectionContainer.removeChild(sections[i]);
+    break;
+    }
+}
+});
+    </script>
